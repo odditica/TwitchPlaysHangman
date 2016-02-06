@@ -10,6 +10,7 @@ Includes:
  - Statistics (%localappdata%)
 
 Network credentials are macros, so you need to change them first in order to make it work.
+
 ------
 
 Created in GameMaker: Studio by Blokatt in 2016.
