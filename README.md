@@ -10,4 +10,4 @@ Includes:
  - Statistics (%localappdata%)
 
 Created in GameMaker: Studio by Blokatt in 2016.
-
+Word lists compiled/taken from http://www.manythings.org/ and http://www.ashley-bovan.co.uk/.
