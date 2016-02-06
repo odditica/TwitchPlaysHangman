@@ -1181,10 +1181,8 @@ ds_list_destroy(global.wordListHard);
             <kind>1</kind>
             <string>//DRAW EVERYTHING, oh boy
 var char;
-
-w = display_get_gui_width();
-h = display_get_gui_height();
-
+var w = display_get_gui_width();
+var h = display_get_gui_height();
 var sz = ds_list_size(global.messageDraw);
 
 if (global.gameState != GAME_STATE_WIN) {
