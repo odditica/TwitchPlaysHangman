@@ -9,7 +9,7 @@ Includes:
  - Commands for guessing, as well as betting points on letters + some other stuff
  - Statistics (%localappdata%)
 
-Network credentials are constants (macros in Studio), so you need to change them first in order to make it work. (network address + oAuth (if you use Twitch IRC))
+Network credentials are constants (macros in Studio), so you need to change them first in order to make it work.
 
 ------
 
