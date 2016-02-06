@@ -1,5 +1,5 @@
 ///sendMessage(message, type (optional))
-///Send a message to the IRC server
+///Send a message to the channel
 
 var message = argument[0];
 
