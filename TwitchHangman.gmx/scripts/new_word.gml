@@ -1,7 +1,6 @@
 ///new_word(next (optional))
 ///Chooses a new word
 
-
 if (argument_count == 1){
    if (argument[0] == 1){
       global.wordNum ++;
@@ -36,7 +35,7 @@ hangManFieldFadeState = 0;
 wordMeltFade = 0;
 wordMeltFadeState = 0;
 
-hangmanPhase = 0;
+hangmanPhase = 10;
 hangmanSub = 0;
 
 wordValExtra = 0;
@@ -59,6 +58,8 @@ gameoverFadeState = 0;
 gameoverFade = 0;
 
 guessUserName = "";
+
+revealedLetters = "";
 
 with (objLetter) 
 instance_destroy();

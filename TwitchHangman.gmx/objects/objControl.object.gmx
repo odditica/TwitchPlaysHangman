@@ -166,8 +166,8 @@ new_word();                              //generate new word
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sendMessage("Did you know...   " + choose("You can use the !pts command to see how many points you have!", "No one is stopping you from following Blokatt on Twitter!", "Blokatt likes to talk about himself in 3rd person.", "Blokatt likes cookies.", "Even though Blokatt's been making games since he was 10, he's never released a game that wasn't made for a game jam.", "You should stop reading this and pay attention to the game.", "Blokatt has a website - blokatt.net.", "Blokatt's even got a personal twitch account - twitch.tv/blokatt", "Venturesomeness is apparently a real word. DansGame"), 3);
-
+            <string>///RANDOM FACT ABOUT YOURS TRULY
+sendMessage("Did you know...   " + choose("You can use the !pts command to see how many points you have!", "No one is stopping you from following Blokatt on Twitter!", "Blokatt likes to talk about himself in 3rd person.", "Blokatt likes cookies.", "Even though Blokatt's been making games since he was 10, he's never released a game that wasn't made for a game jam.", "You should stop reading this and pay attention to the game.", "Blokatt has a website - blokatt.net.", "Blokatt's even got a personal twitch account - twitch.tv/blokatt", "Venturesomeness is apparently a real word. DansGame"), 3);
 alarm[11] = sec(1200);
 </string>
           </argument>
@@ -191,7 +191,8 @@ alarm[11] = sec(1200);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>pongReceived ++;
+            <string>///PONG CLOCK
+pongReceived ++;
 if (pongReceived &gt; 2) then game_restart();
 alarm[10] = sec(30);
 </string>
@@ -216,7 +217,8 @@ alarm[10] = sec(30);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>gameoverOverlayFadeState = 1;
+            <string>///TRIGGER GAME OVER FADE-OUT
+gameoverOverlayFadeState = 1;
 </string>
           </argument>
         </arguments>
@@ -239,7 +241,8 @@ alarm[10] = sec(30);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>gameoverDropFadeState = 1;
+            <string>///TRIGGER GAME OVER ANIMATION
+gameoverDropFadeState = 1;
 alarm[9] = sec(7);
 </string>
           </argument>
@@ -286,7 +289,8 @@ alarm[9] = sec(7);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>new_word(1); 
+            <string>///GENERATE A NEW WORD
+new_word(1); 
 </string>
           </argument>
         </arguments>
@@ -309,7 +313,8 @@ alarm[9] = sec(7);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>win_state();
+            <string>///TRIGGER WIN STATE
+win_state();
 </string>
           </argument>
         </arguments>
@@ -332,7 +337,8 @@ alarm[9] = sec(7);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>wordMeltFadeState = 1;
+            <string>///TRIGGER WORD MELT ANIMATION
+wordMeltFadeState = 1;
 alarm[5] = sec(3);
 </string>
           </argument>
@@ -356,7 +362,8 @@ alarm[5] = sec(3);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topMessageState = 0;
+            <string>///TOP MESSAGE RESET
+topMessageState = 0;
 </string>
           </argument>
         </arguments>
@@ -379,7 +386,7 @@ alarm[5] = sec(3);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// LETTER GUESSING ANIMATION
+            <string>/// LETTER GUESSING ANIMATION + PROCESSING
 
 switch (global.guessState) {
     case 0:
@@ -413,16 +420,21 @@ switch (global.guessState) {
         if (count &gt; 0) {
             global.exists = 0;
             with(objLetter) {
-                if (global.check = character &amp;&amp; revealed == 1)
+                if (global.check = character &amp;&amp; revealed == 1){
                     global.exists = 1;
+                }
             }
             if (!global.exists) {
                 guessSignSub = 0;
                 guessSignSpr = sprCheck;
 
                 with(objLetter) {
-                    if (character = global.check) then revealed = 1;
+                    if (character = global.check){
+                       revealed = 1;
+                       objControl.revealedLetters += string_upper(character);
+                    }
                 }
+                global.wordVal = get_word_value(global.word);
             }
         } else {
             guessSignSub = 0;
@@ -443,7 +455,6 @@ switch (global.guessState) {
         }
         
         global.guessState = 4;
-        
         break;
 
     case 4:
@@ -620,7 +631,8 @@ switch (global.guessState) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sendMessage("PING irc.twitch.tv", 1);
+            <string>///PING
+sendMessage("PING irc.twitch.tv", 1);
 alarm[1] = sec(20);
 </string>
           </argument>
@@ -984,6 +996,8 @@ while (ds_list_size(commandBuffer) &gt; 0){
                       arg0 = get_word_value(global.word);
                    }
                    
+                   arg0 = min(get_max_bet(), arg0);
+                                      
                    var arg1 = "";
 
                    if (string_length(guessSub) &gt; 1 &amp;&amp; string_letters(guessSub) != ""){
@@ -1129,7 +1143,7 @@ if (string_length(data) &gt; 0){
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="3">
+    <event eventtype="7" enumb="5">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -1291,7 +1305,7 @@ var off = 0;
 for (var i = 1; i &lt;= 6; i++) {
     char = string_char_at(str, i);
     draw_set_colour(make_colour_hsv((180 + i * 20 + colorRoll) mod 255, 200, 80));
-    draw_text_shadow_transformed(1145 + off, 10 + random_range(-uiActiveIntensity, uiActiveIntensity) * 10, char, 1.07, 1, 0, 1, 4);
+    draw_text_shadow_transformed(1135 + off, 10 + random_range(-uiActiveIntensity, uiActiveIntensity) * 10, char, 1.07, 1, 0, 1, 4);
     off += string_width(char);
 }
 
@@ -1330,7 +1344,7 @@ for (var i = 0; i &lt; 2; i++) {
 }
 draw_set_halign(fa_right);
 draw_set_colour(make_colour_hsv((240 + i * 20 + colorRoll) mod 255, 200, 80));
-draw_text_shadow_transformed(849, 10 + random_range(-uiHangmanIntensity, uiHangmanIntensity) * 10, str, 1.07, 1, 0, 1, 4);
+draw_text_shadow_transformed(843, 10 + random_range(-uiHangmanIntensity, uiHangmanIntensity) * 10, str, 1.07, 1, 0, 1, 4);
 draw_set_halign(fa_left);
 ////
 
@@ -1342,7 +1356,7 @@ for (var i = 0; i &lt; 2; i++) {
 }
 
 draw_set_colour(make_colour_hsv((280 + i * 20 + colorRoll) mod 255, 200, 80));
-draw_text_shadow_transformed(867, 10 + random_range(-uiHangmanIntensity, uiHangmanIntensity) * 10, "13", 1.07, 1, 0, 1, 4);
+draw_text_shadow_transformed(857, 10 + random_range(-uiHangmanIntensity, uiHangmanIntensity) * 10, "13", 1.07, 1, 0, 1, 4);
 
 
 draw_set_colour(c_black);
@@ -1354,8 +1368,11 @@ for (var i = 1; i &lt;= string_length(global.word); i++) {
 
 
 draw_set_font(fntMain);
-//draw_set_halign(fa_center);
+
+
 if (global.gameState != GAME_STATE_LOSE) {
+    var offsetBuffer = 0;
+    
     var tempStr = "Word value: " + string(global.wordVal);
     var lenBuf = 0;
     for (var i = 1; i &lt;= string_length(tempStr); i++) {
@@ -1366,7 +1383,28 @@ if (global.gameState != GAME_STATE_LOSE) {
             col = make_colour_hsv((120 + i * 20 + colorRoll) mod 255, 200, 80);
         }
         draw_set_colour(col);
-        draw_text_shadow_transformed(round(display_get_gui_width() / 2) + sin(global.letterSin + i / 10) * 5 + 1000 * (guessLetterFade + mainFade) - string_width(tempStr) / 2 + lenBuf - (1 - voteGraphicsFade) * 80, display_get_gui_height() / 2 + 100 + 100 * hangManFieldFade + random_range(-wordValIntensity, wordValIntensity) * 5, char, 1, 1, 0, 1, 5);
+        draw_text_shadow_transformed(round(display_get_gui_width() / 2) + sin(global.letterSin + i / 10) * 5 - 1000 * (guessLetterFade + mainFade) - string_width(tempStr) + lenBuf - 20 - (1 - voteGraphicsFade) * 80, display_get_gui_height() / 2 + 100 + 100 * hangManFieldFade + random_range(-wordValIntensity, wordValIntensity) * 5, char, 1, 1, 0, 1, 5);
+        lenBuf += string_width(char);
+    }
+    
+    offsetBuffer += i;
+    draw_set_colour(c_black);
+    draw_set_valign(fa_middle);
+    draw_text_shadow_transformed(round(display_get_gui_width() / 2) - (1 - voteGraphicsFade) * 80 + sin(global.letterSin + offsetBuffer / 10) * 5 - 10, display_get_gui_height() / 2 + 100 + 100 * hangManFieldFade + random_range(-wordValIntensity, wordValIntensity) * 5 + 16, "|", 1, (1 - min(1, (guessLetterFade + mainFade) * 7)), 0, 1, 5);
+    draw_set_valign(fa_top);
+    offsetBuffer ++; 
+    
+    var tempStr = "Maximum bet: " + string(global.wordVal * 5);
+    var lenBuf = 0;
+    for (var i = 1; i &lt;= string_length(tempStr); i++) {
+        var col = c_black;
+        var char = string_char_at(tempStr, i);
+
+        if (string_digits(char) != "") {
+            col = make_colour_hsv((120 + i * 20 + colorRoll) mod 255, 200, 80);
+        }
+        draw_set_colour(col);
+        draw_text_shadow_transformed(round(display_get_gui_width() / 2) + sin(global.letterSin + (i + offsetBuffer) / 10) * 5 + 1000 * (guessLetterFade + mainFade) + lenBuf + 10 - (1 - voteGraphicsFade) * 80, display_get_gui_height() / 2 + 100 + 100 * hangManFieldFade + random_range(-wordValIntensity, wordValIntensity) * 5, char, 1, 1, 0, 1, 5);
         lenBuf += string_width(char);
     }
 
@@ -1512,10 +1550,12 @@ draw_set_colour(c_black);
 
 draw_set_font(fntWord);
 
+global.wordWidthHalf = string_length(global.word) * 60 / 2;
+
 with(objLetter) {
 
     var xs = 1;
-
+    
     if (character = "M" || character = "X")
         xs = .9;
 
@@ -1524,12 +1564,13 @@ with(objLetter) {
         if (objControl.mainFadeState == 0) {
             draw_set_colour(merge_colour(c_black, make_colour_hsv((objControl.colorRoll * 1.5 + pos * 20) mod 255, 150, 155), objControl.mainFade));
         }
-        draw_text_shadow_transformed(round(display_get_gui_width() / 2 + 18 + offset - global.width / 2 + 5 + sin(global.letterSin + pos + .5) * 3) - (1 - objControl.voteGraphicsFade) * 80, display_get_gui_height() / 2 + 50 + yOff * (1 - objControl.mainFade) + (sin(objControl.colorRoll / 20 + pos) * 20) * objControl.mainFade + (objControl.wordMeltFade * 500) * (1 + ((sin(pos) + 1) / 2) * 5) + objControl.gameoverFade * 700, character, xs + (1 - revealFade), revealFade, 0, 1 - objControl.gameoverFade, 5);
+        draw_text_shadow_transformed(round(display_get_gui_width() / 2 - global.wordWidthHalf + offset + WORD_LETTER_SPACING / 2 - 4 + sin(global.letterSin + pos + .5) * 3) - (1 - objControl.voteGraphicsFade) * 80, display_get_gui_height() / 2 + 50 + yOff * (1 - objControl.mainFade) + (sin(objControl.colorRoll / 20 + pos) * 20) * objControl.mainFade + (objControl.wordMeltFade * 500) * (1 + ((sin(pos) + 1) / 2) * 5) + objControl.gameoverFade * 700, character, xs + (1 - revealFade), revealFade, 0, 1 - objControl.gameoverFade, 5);
     }
+    
     draw_set_colour(c_black);
     if (character != " ") {
         yOff = round(100 * ((objControl.hangManFieldFade - objControl.guessLetterFade)) - (25 * objControl.guessLetterFade));
-        draw_text_shadow_transformed(round(display_get_gui_width() / 2 + 22 + offset - global.width / 2 + 5 + sin(global.letterSin + pos + .6) * 3) - (1 - objControl.voteGraphicsFade) * 80, display_get_gui_height() / 2 + 50 + yOff + 600 * (objControl.mainFade * (1 + pos / 20)) + objControl.gameoverFade * 800, "_", 1, 1, 0, 1 - objControl.mainFade - objControl.gameoverFade, 5);
+        draw_text_shadow_transformed(round(display_get_gui_width() / 2 - global.wordWidthHalf + offset + WORD_LETTER_SPACING / 2 + sin(global.letterSin + pos + .6) * 3) - (1 - objControl.voteGraphicsFade) * 80, display_get_gui_height() / 2 + 50 + yOff + 600 * (objControl.mainFade * (1 + pos / 20)) + objControl.gameoverFade * 800, "_", 1, 1, 0, 1 - objControl.mainFade - objControl.gameoverFade, 5);
     }
 }
 draw_set_valign(fa_top);

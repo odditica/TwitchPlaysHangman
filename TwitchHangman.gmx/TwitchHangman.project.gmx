@@ -87,6 +87,7 @@
       <script>scripts\loadWords.gml</script>
       <script>scripts\new_word.gml</script>
       <script>scripts\get_letter_value.gml</script>
+      <script>scripts\get_max_bet.gml</script>
     </scripts>
     <scripts name="OTHER">
       <script>scripts\sec.gml</script>
@@ -111,7 +112,12 @@
   <rooms name="rooms">
     <room>rooms\rmMain</room>
   </rooms>
-  <constants number="20">
+  <constants number="22">
+    <constant name="NETWORK_URL"> "irc.twitch.tv"</constant>
+    <constant name="BROADCASTER_NAME">"Channel"</constant>
+    <constant name="CHANNEL_NAME">"#channel"</constant>
+    <constant name="BROADCASTER_OAUTH">"get it at: https://twitchapps.com/tmi/"</constant>
+    <constant name="______________________">___________________________</constant>
     <constant name="TYPE_NUMBER">0</constant>
     <constant name="TYPE_STRING">1</constant>
     <constant name="USERS_NUM">array_length_1d(global.users)</constant>
@@ -127,11 +133,8 @@
     <constant name="UNICODE_UPPERCASE_OFFSET">65</constant>
     <constant name="WORD_DIFFICULTY_NORMAL">0</constant>
     <constant name="WORD_DIFFICULTY_HARD">1</constant>
-    <constant name="CHANNEL_NAME">"#twitchhangman"</constant>
-    <constant name="BROADCASTER_NAME">"TwitchHangman"</constant>
     <constant name="UNICODE_LOWERCASE_OFFSET">97</constant>
-    <constant name="NETWORK_URL"> "irc.twitch.tv"</constant>
-    <constant name="BROADCASTER_OAUTH">"secret"</constant>
+    <constant name="WORD_LETTER_SPACING">64</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
