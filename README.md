@@ -13,7 +13,7 @@ Network credentials are constants (macros in Studio), so you need to change them
 
 ------
 
-Created using GameMaker: Studio in 2015/2016.
+Created using GameMaker: Studio mostly in 2015.
 
 Word lists compiled/taken from http://www.manythings.org/ and http://www.ashley-bovan.co.uk/.
 
