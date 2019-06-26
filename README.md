@@ -23,4 +23,6 @@ Originally streamed at: www.twitch.tv/twitchhangman/
 
 Video: https://www.youtube.com/watch?v=J7Cw4OzALPM
 
-![](http://puu.sh/lNgy6/79c603618c.png)
+Featured in the [Made with GameMaker Showreel](https://www.youtube.com/watch?v=NeSfnKQTCWw)!
+
+![](https://dl.blokatt.net/img/hangman.png)
